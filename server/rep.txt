@@ -1,0 +1,566 @@
+https://urapp.i-xiaoma.com.cn/app/v2/bus/new/preTime/yantai
+{
+  "data": {
+    "0": {
+      "sname": "东陌堂",
+      "siteid": "714",
+      "lineid": "24",
+      "remaintime": ""
+    },
+    "1": {
+      "sname": "东陌堂北站",
+      "siteid": "713",
+      "lineid": "24",
+      "remaintime": ""
+    },
+    "2": {
+      "sname": "珠岩大桥",
+      "siteid": "9840",
+      "lineid": "24",
+      "remaintime": ""
+    },
+    "3": {
+      "sname": "东珠岩",
+      "siteid": "712",
+      "lineid": "24",
+      "remaintime": "即将到达"
+    },
+    "4": {
+      "sname": "南车门西站",
+      "siteid": "711",
+      "lineid": "24",
+      "remaintime": "3分钟"
+    },
+    "5": {
+      "sname": "杜家疃",
+      "siteid": "9521",
+      "lineid": "24",
+      "remaintime": "5分钟"
+    },
+    "6": {
+      "sname": "汽车南站（朱家疃）",
+      "siteid": "709",
+      "lineid": "24",
+      "remaintime": "6分钟"
+    },
+    "7": {
+      "sname": "瑞康医药有限公司（烟台中西医肛肠医院）",
+      "siteid": "708",
+      "lineid": "24",
+      "remaintime": "7分钟"
+    },
+    "8": {
+      "sname": "柏思幼儿园",
+      "siteid": "707",
+      "lineid": "24",
+      "remaintime": "9分钟"
+    },
+    "9": {
+      "sname": "姜家疃",
+      "siteid": "9847",
+      "lineid": "24",
+      "remaintime": "即将到达"
+    },
+    "10": {
+      "sname": "黄务立交桥",
+      "siteid": "705",
+      "lineid": "24",
+      "remaintime": "4分钟"
+    },
+    "11": {
+      "sname": "黄务小区",
+      "siteid": "704",
+      "lineid": "24",
+      "remaintime": "5分钟"
+    },
+    "12": {
+      "sname": "篆山",
+      "siteid": "703",
+      "lineid": "24",
+      "remaintime": "7分钟"
+    },
+    "13": {
+      "sname": "卧龙经济园区",
+      "siteid": "702",
+      "lineid": "24",
+      "remaintime": "9分钟"
+    },
+    "14": {
+      "sname": "华鑫大众汽车公司",
+      "siteid": "701",
+      "lineid": "24",
+      "remaintime": "11分钟"
+    },
+    "15": {
+      "sname": "南江汽车城",
+      "siteid": "700",
+      "lineid": "24",
+      "remaintime": "即将到达"
+    },
+    "16": {
+      "sname": "上曲家",
+      "siteid": "699",
+      "lineid": "24",
+      "remaintime": "3分钟"
+    },
+    "17": {
+      "sname": "烟台交运驾校",
+      "siteid": "698",
+      "lineid": "24",
+      "remaintime": "5分钟"
+    },
+    "18": {
+      "sname": "朱家庄",
+      "siteid": "697",
+      "lineid": "24",
+      "remaintime": "6分钟"
+    },
+    "19": {
+      "sname": "机场路荣尧街东口",
+      "siteid": "738",
+      "lineid": "24",
+      "remaintime": "7分钟"
+    },
+    "20": {
+      "sname": "世回尧",
+      "siteid": "695",
+      "lineid": "24",
+      "remaintime": "即将到达"
+    },
+    "21": {
+      "sname": "上尧（吉利汽车）",
+      "siteid": "3441",
+      "lineid": "24",
+      "remaintime": "2分钟"
+    },
+    "22": {
+      "sname": "中桦家苑",
+      "siteid": "9189",
+      "lineid": "24",
+      "remaintime": "4分钟"
+    },
+    "23": {
+      "sname": "张裕公司",
+      "siteid": "693",
+      "lineid": "24",
+      "remaintime": "6分钟"
+    },
+    "24": {
+      "sname": "消防特勤中队",
+      "siteid": "692",
+      "lineid": "24",
+      "remaintime": "7分钟"
+    },
+    "25": {
+      "sname": "文化路立交桥",
+      "siteid": "691",
+      "lineid": "24",
+      "remaintime": "10分钟"
+    },
+    "26": {
+      "sname": "中信银行",
+      "siteid": "690",
+      "lineid": "24",
+      "remaintime": "12分钟"
+    },
+    "27": {
+      "sname": "烟台联通大楼",
+      "siteid": "3295",
+      "lineid": "24",
+      "remaintime": "13分钟"
+    },
+    "28": {
+      "sname": "工人子女小学",
+      "siteid": "1086",
+      "lineid": "24",
+      "remaintime": "即将到达"
+    },
+    "29": {
+      "sname": "火车站",
+      "siteid": "137",
+      "lineid": "24",
+      "remaintime": "4分钟"
+    }
+  },
+  "msg": {
+    "code": "20000",
+    "message": "请求成功"
+  },
+  "success": true
+}
+
+https://urapp.i-xiaoma.com.cn/app/v2/bus/new/planTime
+
+{
+  "data": [
+    {
+      "busId": "100010547",
+      "planEndTime": "15:50",
+      "planNo": 10,
+      "planStartTime": "15:00"
+    },
+    {
+      "busId": "100010534",
+      "planEndTime": "15:58",
+      "planNo": 13,
+      "planStartTime": "15:08"
+    },
+    {
+      "busId": "100010529",
+      "planEndTime": "16:06",
+      "planNo": 15,
+      "planStartTime": "15:16"
+    }
+  ],
+  "msg": {
+    "code": "20000",
+    "message": "请求成功"
+  },
+  "success": true
+}
+
+https://urapp.i-xiaoma.com.cn/app/v2/bus/new/line
+
+{
+  "data": {
+    "lineBusDtoList": [
+      {
+        "arrived": "0",
+        "busId": "F07690D",
+        "busNo": "鲁F07690D",
+        "busOrder": "4",
+        "busType": "21",
+        "gpsSpeed": "43",
+        "latitude": "37.41927728868486",
+        "lineType": "UNKNOWN",
+        "longitude": "121.35733108023015",
+        "subLine": false
+      },
+      {
+        "arrived": "0",
+        "busId": "F07326D",
+        "busNo": "鲁F07326D",
+        "busOrder": "11",
+        "busType": "21",
+        "gpsSpeed": "0",
+        "latitude": "37.458960102726756",
+        "lineType": "UNKNOWN",
+        "longitude": "121.35882062182155",
+        "subLine": false
+      },
+      {
+        "arrived": "0",
+        "busId": "F07639D",
+        "busNo": "鲁F07639D",
+        "busOrder": "17",
+        "busType": "21",
+        "gpsSpeed": "0",
+        "latitude": "37.48908836625276",
+        "lineType": "UNKNOWN",
+        "longitude": "121.36400954885923",
+        "subLine": false
+      },
+      {
+        "arrived": "0",
+        "busId": "F07632D",
+        "busNo": "鲁F07632D",
+        "busOrder": "21",
+        "busType": "21",
+        "gpsSpeed": "0",
+        "latitude": "37.50991768186741",
+        "lineType": "UNKNOWN",
+        "longitude": "121.36568009973261",
+        "subLine": false
+      },
+      {
+        "arrived": "0",
+        "busId": "F08050D",
+        "busNo": "鲁F08050D",
+        "busOrder": "29",
+        "busType": "21",
+        "gpsSpeed": "23",
+        "latitude": "37.544027687072735",
+        "lineType": "UNKNOWN",
+        "longitude": "121.37970732050228",
+        "subLine": false
+      }
+    ],
+    "lineDetailBaseDto": {
+      "direction": "370600-12-0",
+      "earlyHour": "冬季05:20 夏季05:20",
+      "endStop": "火车站",
+      "index": 0,
+      "lastHour": "冬季21:00 夏季22:00",
+      "lineId": "370600-12-1",
+      "lineName": "9路",
+      "linePlanShow": 1,
+      "price": "",
+      "startStop": "东陌堂"
+    },
+    "planList": [
+      {
+        "busId": "100010547",
+        "planEndTime": "15:50",
+        "planNo": 10,
+        "planStartTime": "15:00"
+      },
+      {
+        "busId": "100010534",
+        "planEndTime": "15:58",
+        "planNo": 13,
+        "planStartTime": "15:08"
+      },
+      {
+        "busId": "100010529",
+        "planEndTime": "16:06",
+        "planNo": 15,
+        "planStartTime": "15:16"
+      }
+    ],
+    "stopDetailList": [
+      {
+        "crowd": 2,
+        "latitude": "37.4072279",
+        "longitude": "121.3571704",
+        "stopId": "962E2C95BF63137D5EA0C06FF3076D58",
+        "stopName": "东陌堂 (路东)",
+        "stopNo": 1
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4127304",
+        "longitude": "121.3575609",
+        "stopId": "340D2D39A28052B13040A5EC1A4BC32F",
+        "stopName": "东陌堂北站 (路东)",
+        "stopNo": 2
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4157132",
+        "longitude": "121.3573998",
+        "stopId": "5554B5625F8F65BECAE7DEFBB4B68FFA",
+        "stopName": "珠岩大桥 (路东)",
+        "stopNo": 3
+      },
+      {
+        "crowd": 2,
+        "latitude": "37.4248173",
+        "longitude": "121.3580021",
+        "stopId": "9698D1C401DB7C624F8D57CDF1C2D5E1",
+        "stopName": "东珠岩 (路东)",
+        "stopNo": 4
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.432681",
+        "longitude": "121.3587045",
+        "stopId": "D31CD2D3F9D5D4D375E7BC888BEDD834",
+        "stopName": "南车门西站 (路东)",
+        "stopNo": 5
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4420439",
+        "longitude": "121.3587055",
+        "stopId": "BABB0CE07610B81DA7B30A1292841D36",
+        "stopName": "杜家疃 (路东)",
+        "stopNo": 6
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4464954",
+        "longitude": "121.3588062",
+        "stopId": "9E4FB7DBABE13262B8FDEB085A1888C8",
+        "stopName": "汽车南站（朱家疃） (路东)",
+        "stopNo": 7
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4508767",
+        "longitude": "121.3588067",
+        "stopId": "1CA2D31398BF3100E25DA8B2B96FC160",
+        "stopName": "瑞康医药有限公司（烟台中西医肛肠医院） (路东)",
+        "stopNo": 8
+      },
+      {
+        "crowd": 4,
+        "latitude": "37.4520469",
+        "longitude": "121.3587066",
+        "stopId": "DAA32AC2B20B879F6BD01A7DA2ECB6E5",
+        "stopName": "柏思幼儿园 (路东)",
+        "stopNo": 9
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4589091",
+        "longitude": "121.3588076",
+        "stopId": "73BF5EAC4B2DD8C81E8BFF4C0DAE8326",
+        "stopName": "姜家疃 (路东)",
+        "stopNo": 10
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4624507",
+        "longitude": "121.3592088",
+        "stopId": "349EF8E4B4C538F4A7904EFF0AAF0182",
+        "stopName": "黄务立交桥 (路东)",
+        "stopNo": 11
+      },
+      {
+        "crowd": 2,
+        "latitude": "37.4706975",
+        "longitude": "121.360769",
+        "stopId": "59239D6C36ABD99DE70C996103422E1E",
+        "stopName": "黄务小区 (路东)",
+        "stopNo": 12
+      },
+      {
+        "crowd": 2,
+        "latitude": "37.4739776",
+        "longitude": "121.3615149",
+        "stopId": "BAFE3DD774FF505129BB62D0A1E83DD2",
+        "stopName": "篆山 (路东)",
+        "stopNo": 13
+      },
+      {
+        "crowd": 2,
+        "latitude": "37.4791504",
+        "longitude": "121.3624173",
+        "stopId": "1CF8319CCAFF785D75F211A3A4243B45",
+        "stopName": "卧龙经济园区 (路东)",
+        "stopNo": 14
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4842529",
+        "longitude": "121.3632194",
+        "stopId": "E7586DEEF78414D17865FD9C2197C56F",
+        "stopName": "华鑫大众汽车公司 (路东)",
+        "stopNo": 15
+      },
+      {
+        "crowd": 3,
+        "latitude": "37.4889954",
+        "longitude": "121.3640216",
+        "stopId": "AE4E368D5FB2F61328459D07F01B9E92",
+        "stopName": "南江汽车城 (路东)",
+        "stopNo": 16
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.493387",
+        "longitude": "121.3644228",
+        "stopId": "EB99D38333862D676F42F23E1434BFAA",
+        "stopName": "上曲家 (路东)",
+        "stopNo": 17
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.4983487",
+        "longitude": "121.364724",
+        "stopId": "8F0AB3E2AB100DCFC305504EC1F3E196",
+        "stopName": "烟台交运驾校 (路东)",
+        "stopNo": 18
+      },
+      {
+        "crowd": 2,
+        "latitude": "37.5028203",
+        "longitude": "121.3651252",
+        "stopId": "D189E7ABB97A48045D4145E8BD571E07",
+        "stopName": "朱家庄 (路东)",
+        "stopNo": 19
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.5073416",
+        "longitude": "121.3653261",
+        "stopId": "3861986C77431FE1A567BD7F8A75FF52",
+        "stopName": "机场路荣尧街东口 (路东)",
+        "stopNo": 20
+      },
+      {
+        "crowd": 2,
+        "latitude": "37.511314",
+        "longitude": "121.3663285",
+        "stopId": "D9E769EC0DD4B8EB201B20C962142CB5",
+        "stopName": "世回尧 (路东)",
+        "stopNo": 21
+      },
+      {
+        "crowd": 3,
+        "latitude": "37.5151373",
+        "longitude": "121.3680321",
+        "stopId": "B2A6C28667B1F559BA8A49E36C60A639",
+        "stopName": "上尧（吉利汽车） (路东)",
+        "stopNo": 22
+      },
+      {
+        "crowd": 2,
+        "latitude": "37.5204916",
+        "longitude": "121.3703368",
+        "stopId": "BA0319B2F051A6503DDC13B4ADB6223C",
+        "stopName": "中桦家苑 (路东)",
+        "stopNo": 23
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.522823700000004",
+        "longitude": "121.3715392",
+        "stopId": "1B24B807F95499EF0E5ACC950CF7F8F2",
+        "stopName": "张裕公司 (路东)",
+        "stopNo": 24
+      },
+      {
+        "latitude": "37.532509",
+        "longitude": "121.3741446",
+        "stopId": "C738125E9792FE83D5D2053737E0288B",
+        "stopName": "消防特勤中队 (路东)",
+        "stopNo": 25
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.5368172",
+        "longitude": "121.3752469",
+        "stopId": "B3BDABCD5998FD46A5BB99A948F6F1C1",
+        "stopName": "文化路立交桥 (路东)",
+        "stopNo": 26
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.5397331",
+        "longitude": "121.3763489",
+        "stopId": "34C11E4399D6C183ED9FDA428F5E280C",
+        "stopName": "中信银行 (路东)",
+        "stopNo": 27
+      },
+      {
+        "crowd": 4,
+        "latitude": "37.5429762",
+        "longitude": "121.3785526",
+        "stopId": "823A774408C87844EEA1835AB578A141",
+        "stopName": "烟台联通大楼 (路东)",
+        "stopNo": 28
+      },
+      {
+        "crowd": 1,
+        "latitude": "37.545309",
+        "longitude": "121.3807559",
+        "stopId": "FF7D2AE075ACB25A71F9A73F6DFD189F",
+        "stopName": "工人子女小学 (路东)",
+        "stopNo": 29
+      },
+      {
+        "latitude": "37.5459425",
+        "longitude": "121.3840602",
+        "stopId": "DEF575CB25E6644D59DA0B57393B52AB",
+        "stopName": "火车站 (路南)",
+        "stopNo": 30
+      }
+    ]
+  },
+  "msg": {
+    "code": "20000",
+    "message": "请求成功"
+  },
+  "success": true
+}

@@ -15,6 +15,7 @@ const dbConfig = {
         TODOS: process.env.MONGODB_COLLECTION_TODOS || "todos",
         USERS: process.env.MONGODB_COLLECTION_USERS || "users",
         TOKENS: process.env.MONGODB_COLLECTION_TOKENS || "tokens",
+        BUS: process.env.MONGODB_COLLECTION_BUS || "bus",
     },
     connectDB: async () => {
         await mongoose.connect(dbConfig.uri, dbConfig.options);

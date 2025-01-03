@@ -1,0 +1,92 @@
+{
+    "version": "1.0",
+    "info": "Reqable Collection APIs",
+    "id": "9fb867a6-f3ff-4bfc-829b-bda4a78b8ec2",
+    "name": "Bus",
+    "items": [
+        {
+            "id": "c74d4874-4e3a-49b6-a7b9-22f2a1fdc4a4",
+            "name": "urapp.i-xiaoma.com.cn",
+            "method": "POST",
+            "url": {
+                "base": "https://urapp.i-xiaoma.com.cn/app/v2/bus/new/preTime/yantai",
+                "query": []
+            },
+            "headers": [
+                {
+                    "key": "content-type",
+                    "value": "application/json; charset=UTF-8"
+                }
+            ],
+            "internalHeaders": {
+                "User-Agent": "Android",
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "Content-Type": "application/json",
+                "Content-Length": ""
+            },
+            "body": {
+                "type": "json",
+                "data": {
+                    "text": "{\"lineCode\":\"UFX5uMZ1T+C0GHgerJg2ZYoeE69sRqgDlVFZbIjzUXevYxlSlkvsIPCiUq2Yrdwd800X6gtqX/LOQXP6ebpSHJvoXa6CBBT2PS0ROn+nEpS7xW+o38mTOCy8nXkc4YdxKotzHIWzOiff467p4c/GX/NPLMq6L0Z7zqMTnEqXp4Y=\",\"appKey\":\"882619AB7B73050D\",\"channelName\":\"xiaoma\",\"deviceId\":\"a6cafa9caf5510c6\",\"deviceType\":1,\"phoneManufacturer\":\"Xiaomi\",\"phoneModel\":\"2203121C\",\"phoneVersion\":\"9\",\"pushToken\":\"160a3797c9317d8c916\",\"timeRequest\":1735868460545,\"versionCode\":\"118\",\"versionName\":\"1.1.8\",\"xiaomaAppId\":\"882619AB7B73050D\"}"
+                }
+            }
+        },
+        {
+            "id": "da09603e-241d-4c9f-83e5-00b5c1c735a0",
+            "name": "urapp.i-xiaoma.com.cn",
+            "method": "POST",
+            "url": {
+                "base": "https://urapp.i-xiaoma.com.cn/app/v2/bus/new/planTime",
+                "query": []
+            },
+            "headers": [
+                {
+                    "key": "content-type",
+                    "value": "application/json; charset=UTF-8"
+                }
+            ],
+            "internalHeaders": {
+                "User-Agent": "Android",
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "Content-Type": "application/json",
+                "Content-Length": ""
+            },
+            "body": {
+                "type": "json",
+                "data": {
+                    "text": "{\"lineId\":\"QGQdtHAhsHta2P48a84nmHewJ77JJGuG7blU+7sTf5xoBOKlbRVP5D+NqrVkZQ3smip5gVSWUjSYcwzC+Mtc2igkFt52ALqxpIiNkcxPGhu5QSXbRYruOAGp9lHAvpnSOQZbZK7LDAWE47kE7m1JGYETMUEONs15cHX+EVZV2w0=\",\"appKey\":\"882619AB7B73050D\",\"channelName\":\"xiaoma\",\"deviceId\":\"a6cafa9caf5510c6\",\"deviceType\":1,\"phoneManufacturer\":\"Xiaomi\",\"phoneModel\":\"2203121C\",\"phoneVersion\":\"9\",\"pushToken\":\"160a3797c9317d8c916\",\"timeRequest\":1735868460561,\"versionCode\":\"118\",\"versionName\":\"1.1.8\",\"xiaomaAppId\":\"882619AB7B73050D\"}"
+                }
+            }
+        },
+        {
+            "id": "b9f739fe-64c0-4f58-82f5-36c3aa1fd94b",
+            "name": "urapp.i-xiaoma.com.cn",
+            "method": "POST",
+            "url": {
+                "base": "https://urapp.i-xiaoma.com.cn/app/v2/bus/new/line",
+                "query": []
+            },
+            "headers": [
+                {
+                    "key": "content-type",
+                    "value": "application/json; charset=UTF-8"
+                }
+            ],
+            "internalHeaders": {
+                "User-Agent": "Android",
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "Content-Type": "application/json",
+                "Content-Length": ""
+            },
+            "body": {
+                "type": "json",
+                "data": {
+                    "text": "{\"lineCode\":\"BoYxOXc4WUSivJFbKYH1ltFn3mQ4NWbUiS9FoDX4EuqB1sAHZ1WLMdxHPoAd4kJHGaeejVM5V+phCVKqbgUQ3GsawivSmZwsI4BvCJgWJTc6S33iJ4eTUlNN4yt9j7jh1w4cDpdlaYhYsNnsvLFXilnC1nrQb+dTRmB9UAO3hus=\",\"appKey\":\"882619AB7B73050D\",\"channelName\":\"xiaoma\",\"deviceId\":\"a6cafa9caf5510c6\",\"deviceType\":1,\"phoneManufacturer\":\"Xiaomi\",\"phoneModel\":\"2203121C\",\"phoneVersion\":\"9\",\"pushToken\":\"160a3797c9317d8c916\",\"timeRequest\":1735868460534,\"versionCode\":\"118\",\"versionName\":\"1.1.8\",\"xiaomaAppId\":\"882619AB7B73050D\"}"
+                }
+            }
+        }
+    ]
+}

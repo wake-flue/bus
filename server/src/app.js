@@ -74,10 +74,12 @@ app.use(loggerMiddleware);
 const todosRouter = require("./api/todosApi");
 const logsRouter = require("./api/logsApi");
 const usersRouter = require("./api/usersApi");
+const busRouter = require("./api/busApi");
 
 app.use(`/api/${apiVersion}/todos`, todosRouter);
 app.use(`/api/${apiVersion}/logs`, logsRouter);
 app.use(`/api/${apiVersion}/users`, usersRouter);
+app.use(`/api/${apiVersion}/bus`, busRouter);
 
 //===========================
 // 错误处理
