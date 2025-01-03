@@ -62,7 +62,12 @@ app.get(`/api/${apiVersion}/docs.json`, (req, res) => {
 // 中间件注册
 //===========================
 // 通用中间件
-app.use(cors({ origin: corsOrigin, credentials: true }));
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(operationMiddleware());
