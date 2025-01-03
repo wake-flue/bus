@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>智慧公交</title>
+    <link href="./css/mui.min.css" rel="stylesheet" />
+    <link href="./css/tailwind.min.css" rel="stylesheet" />
+    <script src="./js/mui.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/lodash.min.js"></script>
+    <style>
+        .mui-icon {
+            font-size: 24px;
+            font-weight: normal;
+            font-style: normal;
+            line-height: 1;
+            display: inline-block;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        .icon-large {
+            font-size: 32px !important;
+            line-height: 1;
+        }
+        /* 更新图标编码 */
+        .mui-icon-back:before {
+            content: '\e471';
+        }
+        .mui-icon-left-nav:before {
+            content: '\e471';
+        }
+        .mui-icon-location:before {
+            content: '\e402';
+        }
+        .mui-icon-search:before {
+            content: '\e466';
+        }
+        .mui-icon-star:before {
+            content: '\e442';
+        }
+        .mui-icon-bus:before {
+            content: '\e470';
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="mui-bar mui-bar-nav bg-white shadow-md">
+        <a class="mui-action-back mui-icon mui-icon-back mui-pull-left text-gray-600"></a>
+        <h1 class="mui-title text-lg font-bold">智慧公交</h1>
+    </header>
+
+    <!-- Content -->
+    <div class="mui-content p-4">
+        <!-- 快捷功能区 -->
+        <div class="grid grid-cols-3 gap-4 mb-6 fade-in">
+            <div class="bg-blue-500 text-white rounded-lg p-4 text-center card-hover cursor-pointer">
+                <i class="mui-icon mui-icon-location icon-large"></i>
+                <div class="mt-2">附近站点</div>
+            </div>
+            <div class="bg-green-500 text-white rounded-lg p-4 text-center card-hover cursor-pointer">
+                <i class="mui-icon mui-icon-search icon-large"></i>
+                <div class="mt-2">线路查询</div>
+            </div>
+            <div class="bg-purple-500 text-white rounded-lg p-4 text-center card-hover cursor-pointer">
+                <i class="mui-icon mui-icon-star icon-large"></i>
+                <div class="mt-2">我的收藏</div>
+            </div>
+        </div>
+
+        <!-- 实时公交信息 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4 fade-in" id="busInfo">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="mui-icon mui-icon-bus mr-2"></i>
+                实时公交
+            </h2>
+            <div class="space-y-4" id="busList">
+                <!-- 动态加载的公交信息 -->
+            </div>
+        </div>
+
+        <!-- 站点查询 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mt-4 fade-in">
+            <form class="mui-input-group" id="searchForm">
+                <div class="mui-input-row">
+                    <label>站点查询</label>
+                    <input type="text" class="mui-input-clear" placeholder="请输入站点名称">
+                </div>
+                <div class="mui-button-row">
+                    <button type="button" class="mui-btn mui-btn-primary" id="searchBtn">查询</button>
+                    <button type="button" class="mui-btn mui-btn-outlined">重置</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // 等待plus ready事件后执行
+        document.addEventListener('plusready', function() {
+            // 禁止页面回弹
+            plus.webview.currentWebview().setStyle({
+                bounce: 'none'
+            });
+            
+            // 初始化mui
+            mui.init();
+
+            // 模拟公交数据
+            const busData = [
+                { line: '1路', station: '火车站', time: '2分钟' },
+                { line: '15路', station: '市政府', time: '5分钟' },
+                { line: '25路', station: '大学城', time: '即将到站' }
+            ];
+
+            // 使用lodash模板渲染公交信息
+            const template = _.template(`
+                <% _.forEach(buses, function(bus) { %>
+                    <div class="flex items-center justify-between p-3 border-b border-gray-200">
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-blue-500"><%= bus.line %></span>
+                            <span class="mx-2 text-gray-500">-</span>
+                            <span><%= bus.station %></span>
+                        </div>
+                        <span class="text-red-500"><%= bus.time %></span>
+                    </div>
+                <% }); %>
+            `);
+
+            $('#busList').html(template({ buses: busData }));
+
+            // 添加点击动画效果
+            $('.card-hover').on('click', function() {
+                $(this).css('transform', 'scale(0.95)');
+                setTimeout(() => {
+                    $(this).css('transform', 'translateY(-2px)');
+                }, 200);
+            });
+
+            // 搜索功能
+            $('#searchBtn').on('click', function() {
+                mui.toast('搜索功能开发中...');
+            });
+        });
+    </script>
+</body>
+</html> 
