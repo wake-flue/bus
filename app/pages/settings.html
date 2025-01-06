@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>设置</title>
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/tailwind.min.css" rel="stylesheet" />
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/vue.global.js"></script>
+    <style>
+        :root {
+            --ios-green: rgb(52, 199, 89);
+            --ios-orange: rgb(255, 149, 0);
+            --ios-red: rgb(255, 59, 48);
+            --ios-gray: rgb(142, 142, 147);
+            --ios-bg: rgb(242, 242, 247);
+            --ios-border: rgb(209, 209, 214);
+        }
+
+        /* iOS风格开关 */
+        .ios-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 32px;
+        }
+
+        .ios-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .ios-switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--ios-border);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .ios-switch-slider:before {
+            position: absolute;
+            content: "";
+            height: 28px;
+            width: 28px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .ios-switch input:checked + .ios-switch-slider {
+            background-color: var(--ios-green);
+        }
+
+        .ios-switch input:checked + .ios-switch-slider:before {
+            transform: translateX(20px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-[--ios-bg] font-sans antialiased">
+    <div id="app" class="p-4">
+        <!-- 通用设置 -->
+        <div class="text-[--ios-gray] text-sm font-semibold uppercase tracking-wider mx-4 my-4">通用</div>
+        <div class="bg-white rounded-xl overflow-hidden mb-6 animate-fade-in divide-y divide-[--ios-border]">
+            <div class="flex items-center px-4 py-3">
+                <span class="flex-1">深色模式</span>
+                <label class="ios-switch">
+                    <input type="checkbox" v-model="settings.darkMode">
+                    <span class="ios-switch-slider"></span>
+                </label>
+            </div>
+            <div class="flex items-center px-4 py-3">
+                <span class="flex-1">自动刷新</span>
+                <label class="ios-switch">
+                    <input type="checkbox" v-model="settings.autoRefresh">
+                    <span class="ios-switch-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 通知设置 -->
+        <div class="text-[--ios-gray] text-sm font-semibold uppercase tracking-wider mx-4 my-4">通知</div>
+        <div class="bg-white rounded-xl overflow-hidden mb-6 animate-fade-in divide-y divide-[--ios-border]">
+            <div class="flex items-center px-4 py-3">
+                <span class="flex-1">推送通知</span>
+                <label class="ios-switch">
+                    <input type="checkbox" v-model="settings.notifications">
+                    <span class="ios-switch-slider"></span>
+                </label>
+            </div>
+            <div class="flex items-center px-4 py-3">
+                <span class="flex-1">提醒声音</span>
+                <label class="ios-switch">
+                    <input type="checkbox" v-model="settings.sound" :disabled="!settings.notifications">
+                    <span class="ios-switch-slider"></span>
+                </label>
+            </div>
+            <div class="flex items-center px-4 py-3">
+                <span class="flex-1">震动</span>
+                <label class="ios-switch">
+                    <input type="checkbox" v-model="settings.vibration" :disabled="!settings.notifications">
+                    <span class="ios-switch-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 关于 -->
+        <div class="text-[--ios-gray] text-sm font-semibold uppercase tracking-wider mx-4 my-4">关于</div>
+        <div class="bg-white rounded-xl overflow-hidden animate-fade-in divide-y divide-[--ios-border]">
+            <div class="flex items-center px-4 py-3">
+                <span class="flex-1">版本</span>
+                <span class="text-[--ios-gray]">1.0.0</span>
+            </div>
+            <div class="flex items-center px-4 py-3 active:bg-gray-100 transition-colors duration-200" @click="checkUpdate">
+                <span class="flex-1">检查更新</span>
+                <span class="text-[--ios-gray] mui-icon mui-icon-forward"></span>
+            </div>
+            <div class="flex items-center px-4 py-3 active:bg-gray-100 transition-colors duration-200" @click="showPrivacy">
+                <span class="flex-1">隐私政策</span>
+                <span class="text-[--ios-gray] mui-icon mui-icon-forward"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('plusready', function() {
+            plus.webview.currentWebview().setStyle({
+                bounce: "vertical"
+            });
+
+            const { createApp, ref, reactive, watch } = Vue;
+
+            const app = createApp({
+                setup() {
+                    // 从本地存储加载设置
+                    const loadSettings = () => {
+                        const saved = plus.storage.getItem('settings');
+                        return saved ? JSON.parse(saved) : {
+                            darkMode: false,
+                            autoRefresh: false,
+                            refreshInterval: '60',
+                            notifications: true,
+                            sound: true,
+                            vibration: true
+                        };
+                    };
+
+                    const settings = reactive(loadSettings());
+
+                    // 监听设置变化并保存
+                    watch(settings, (newSettings) => {
+                        plus.storage.setItem('settings', JSON.stringify(newSettings));
+                        // 触觉反馈
+                        if (plus.os.name === 'iOS') {
+                            plus.device.vibrate();
+                        }
+                    }, { deep: true });
+
+                    // 检查更新
+                    const checkUpdate = () => {
+                        mui.toast('当前已是最新版本');
+                    };
+
+                    // 显示隐私政策
+                    const showPrivacy = () => {
+                        mui.openWindow({
+                            url: 'privacy.html',
+                            id: 'privacy',
+                            styles: {
+                                popGesture: 'close'
+                            }
+                        });
+                    };
+
+                    return {
+                        settings,
+                        checkUpdate,
+                        showPrivacy
+                    };
+                }
+            });
+
+            app.mount('#app');
+        });
+    </script>
+</body>
+</html> 

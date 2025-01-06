@@ -4,563 +4,189 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
-        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>智慧公交</title>
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>待办事项</title>
     <link href="./css/mui.min.css" rel="stylesheet" />
     <link href="./css/tailwind.min.css" rel="stylesheet" />
     <script src="./js/mui.min.js"></script>
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/lodash.min.js"></script>
     <style>
+        /* JetBrainsMonoNL-Regular  */
+        @font-face {
+            font-family: 'JetBrainsMonoNL-Regular';
+            src: url('./fonts/JetBrainsMonoNL-Regular.ttf') format('tff');
+        }
+
         :root {
-            --background: 0 0% 100%;
-            --foreground: 222.2 84% 4.9%;
-            --card: 0 0% 100%;
-            --card-foreground: 222.2 84% 4.9%;
-            --popover: 0 0% 100%;
-            --popover-foreground: 222.2 84% 4.9%;
-            --primary: 221.2 83.2% 53.3%;
-            --primary-foreground: 210 40% 98%;
-            --secondary: 210 40% 96.1%;
-            --secondary-foreground: 222.2 47.4% 11.2%;
-            --muted: 210 40% 96.1%;
-            --muted-foreground: 215.4 16.3% 46.9%;
-            --accent: 210 40% 96.1%;
-            --accent-foreground: 222.2 47.4% 11.2%;
-            --destructive: 0 84.2% 60.2%;
-            --destructive-foreground: 210 40% 98%;
-            --border: 214.3 31.8% 91.4%;
-            --input: 214.3 31.8% 91.4%;
-            --ring: 221.2 83.2% 53.3%;
-            --radius: 0.75rem;
+            --ios-orange: rgb(255, 149, 0);
+            --ios-border: rgb(209, 209, 214);
+            --ios-gray: rgb(142, 142, 147);
+            --ios-bg: rgb(242, 242, 247);
+            font-family: 'JetBrainsMonoNL-Regular', sans-serif;
         }
 
-        /* 基础样式 */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
-            touch-action: manipulation;
+        /* iOS风格底部导航 */
+        .ios-tabbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-top: 0.5px solid var(--ios-border);
         }
 
-        /* Header样式 */
-        .mui-bar {
-            height: 3.5rem;
-            background: hsl(var(--background));
-            border-bottom: 1px solid hsl(var(--border));
-            box-shadow: none;
-        }
-
-        .mui-title {
-            color: hsl(var(--foreground));
-            font-size: 1rem;
-            line-height: 3.5rem;
-            font-weight: 500;
-        }
-
-        .mui-icon-back:before {
-            color: hsl(var(--foreground));
-            font-size: 1.25rem;
-            line-height: 3.5rem;
-        }
-
-        /* 加载动画 */
-        .loading-spinner {
-            width: 1.25rem;
-            height: 1.25rem;
-            border: 2px solid hsl(var(--muted));
-            border-top: 2px solid hsl(var(--primary));
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* 卡片样式 */
-        .bus-card {
-            background: hsl(var(--card));
-            border: 1px solid hsl(var(--border));
-            border-radius: var(--radius);
-            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        .ios-tabbar-item {
+            color: var(--ios-gray);
             transition: all 0.2s ease;
         }
 
-        .bus-card:active {
-            background: hsl(var(--accent));
+        .ios-tabbar-item.active {
+            color: var(--ios-orange);
         }
 
-        /* 站点样式 */
-        .stop-item {
-            padding: 0.7rem;
-            min-height: 3.5rem;
-            background: hsl(var(--card));
-            border: 1px solid hsl(var(--border));
-            border-radius: var(--radius);
-            margin-bottom: 2rem;
-            position: relative;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .stop-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .stop-item:hover {
-            background: hsl(var(--accent));
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px -2px rgba(0,0,0,0.1);
-        }
-
-        .stop-number {
-            color: hsl(var(--primary));
-            font-weight: 600;
-            min-width: 2rem;
-            font-variant-numeric: tabular-nums;
-            font-size: 0.875rem;
-        }
-
-        .stop-item .text-foreground {
-            font-size: 0.875rem;
-        }
-
-        /* 到站时间样式 */
-        .arrival-time {
-            font-weight: 500;
-            padding: 0.375rem 0.875rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            background: hsl(var(--accent));
-            color: hsl(var(--accent-foreground));
-            transition: all 0.2s ease;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .arrival-time.soon {
-            background: hsl(var(--destructive) / 0.1);
-            color: hsl(var(--destructive));
-        }
-
-        .arrival-time.normal {
-            background: hsl(142.1 76.2% 36.3% / 0.1);
-            color: hsl(142.1 76.2% 36.3%);
-        }
-
-        /* 拥堵状态指示器 */
-        .crowd-indicator {
-            position: absolute;
-            left: 1.5rem;
-            bottom: -2.2rem;
-            width: 2px;
-            height: 2rem;
-            background: hsl(var(--border));
-            z-index: 1;
-            transition: background-color 0.2s ease;
-        }
-
-        .crowd-indicator::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: inherit;
-        }
-
-        .crowd-indicator::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: inherit;
-        }
-
-        .crowd-status {
-            position: absolute;
-            left: 2.25rem;
-            bottom: -1.75rem;
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            white-space: nowrap;
-            z-index: 2;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            letter-spacing: 0.025em;
-        }
-
-        /* 拥堵状态颜色 */
-        .crowd-1 {
-            background: hsl(142.1 76.2% 36.3%);
-        }
-
-        .crowd-2 {
-            background: hsl(48 96.5% 53.9%);
-        }
-
-        .crowd-3 {
-            background: hsl(32 98.1% 53.9%);
-        }
-
-        .crowd-4 {
-            background: hsl(var(--destructive));
-        }
-
-        .crowd-text-1 {
-            background: hsl(142.1 76.2% 36.3% / 0.1);
-            color: hsl(142.1 76.2% 36.3%);
-        }
-
-        .crowd-text-2 {
-            background: hsl(48 96.5% 53.9% / 0.1);
-            color: hsl(48 96.5% 53.9%);
-        }
-
-        .crowd-text-3 {
-            background: hsl(32 98.1% 53.9% / 0.1);
-            color: hsl(32 98.1% 53.9%);
-        }
-
-        .crowd-text-4 {
-            background: hsl(var(--destructive) / 0.1);
-            color: hsl(var(--destructive));
-        }
-
-        /* 渐入动画 */
-        .fade-in {
-            animation: fadeIn 0.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { 
-                opacity: 0;
-                transform: translateY(4px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 移动端优化 */
-        @media (max-width: 768px) {
-            .mui-content {
-                padding: 1rem;
-            }
-
-            .bus-card {
-                margin-bottom: 1rem;
-            }
-
-            .stop-item {
-                margin-bottom: 2.5rem;
-            }
-
-            .crowd-indicator {
-                left: 1.25rem;
-            }
-
-            .crowd-status {
-                left: 1.75rem;
-            }
-        }
-
-        /* 美化滚动条 */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: hsl(var(--muted));
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: hsl(var(--muted-foreground) / 0.3);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: hsl(var(--muted-foreground) / 0.5);
-        }
-
-        /* 站点列表容器 */
-        .stops-container {
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        /* 最后一个站点特殊处理 */
-        .stop-item:last-child {
-            margin-bottom: 1rem;
+        .ios-tabbar-item:active {
+            opacity: 0.7;
         }
     </style>
 </head>
 
-<body>
-    <!-- Header -->
-    <header class="mui-bar mui-bar-nav">
-        <a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
-        <h1 class="mui-title">智慧公交</h1>
-    </header>
+<body class="bg-[--ios-bg]">
+<!-- Footer -->
+<nav class="fixed bottom-0 left-0 right-0 h-14 ios-tabbar z-50 flex items-center justify-around px-4">
+    <a class="ios-tabbar-item active flex flex-col items-center" data-page="todo">
+        <span class="mui-icon mui-icon-checkmarkempty text-xl"></span>
+        <span class="text-xs mt-0.5">待办</span>
+    </a>
+    <a class="ios-tabbar-item flex flex-col items-center" data-page="settings">
+        <span class="mui-icon mui-icon-gear text-xl"></span>
+        <span class="text-xs mt-0.5">设置</span>
+    </a>
+</nav>
 
-    <!-- Content -->
-    <div class="mui-content">
-        <!-- 实时公交信息 -->
-        <div id="busInfo" class="mt-4">
-            <div id="busList">
-                <!-- 动态加载的公交信息 -->
-            </div>
-        </div>
-    </div>
+<script type="text/javascript">
+    // 初始化
+    mui.init({
+        swipeBack: false,
+        gestureConfig: {
+            tap: true,
+            doubletap: false,
+            longtap: false,
+            hold: false,
+            release: false,
+        },
+        beforeback: function() {
+            // 返回时关闭所有子窗口
+            const currentView = plus.webview.currentWebview();
+            const children = currentView.children();
+            children.forEach(child => {
+                child.close("auto");
+            });
+            return true;
+        },
+    });
 
-    <script type="text/javascript">
-        // 等待plus ready事件后执行
-        document.addEventListener('plusready', function () {
-            // 禁止页面回弹
-            plus.webview.currentWebview().setStyle({
-                bounce: 'none'
+    // 阻止iOS橡皮筋效果
+    document.body.addEventListener("touchmove", function(e) {
+        if (e.cancelable) {
+            e.preventDefault();
+        }
+    }, {
+        passive: false,
+    });
+
+    // 等待加载完毕
+    mui.plusReady(function() {
+        // 获取当前窗口对象
+        const currentView = plus.webview.currentWebview();
+
+        // 预加载所有子页面
+        const subpages = [{
+            url: "./pages/todo.html",
+            id: "todo",
+            styles: {
+                top: "0px",
+                bottom: "50px",
+                bounce: "vertical",
+            },
+        }, {
+            url: "./pages/settings.html",
+            id: "settings",
+            styles: {
+                top: "0px",
+                bottom: "50px",
+                bounce: "vertical",
+            },
+        }];
+
+        // 创建子页面
+        const createSubpage = (options) => {
+            const subpage = plus.webview.create(
+                options.url,
+                options.id,
+                options.styles,
+            );
+            // 添加到当前窗口
+            currentView.append(subpage);
+            return subpage;
+        };
+
+        // 预加载页面
+        const preloadPages = () => {
+            const views = {};
+            subpages.forEach(options => {
+                views[options.id] = createSubpage(options);
+            });
+            // 默认显示todo页面
+            views.todo.show("pop-in");
+            return views;
+        };
+
+        // 初始化页面
+        const views = preloadPages();
+
+        // 底部导航切换
+        mui(".ios-tabbar").on("tap", ".ios-tabbar-item", function() {
+            const pageId = this.dataset.page;
+            if (!pageId || !views[pageId]) return;
+
+            // 更新导航项状态
+            document.querySelectorAll(".ios-tabbar-item").forEach(i => i.classList.remove("active"));
+            this.classList.add("active");
+
+            // 使用原生动画切换页面
+            const showPage = (page) => {
+                page.show("pop-in", 200, () => {
+                    // 触觉反馈
+                    if (plus.os.name === "iOS") {
+                        plus.device.vibrate();
+                    }
+                });
+            };
+
+            const hidePage = (page) => {
+                page.hide("pop-out", 200);
+            };
+
+            // 切换页面
+            Object.entries(views).forEach(([id, view]) => {
+                if (id === pageId) {
+                    showPage(view);
+                } else {
+                    hidePage(view);
+                }
+            });
+        });
+
+        // 监听页面显示/隐藏事件
+        Object.values(views).forEach(view => {
+            view.addEventListener("show", () => {
+                console.log(`页面显示: ${view.id}`);
+                // 可以在这里处理页面显示后的逻辑
             });
 
-            // 初始化mui
-            mui.init();
-
-            // API基础URL
-            const API_BASE_URL = 'http://192.168.117.4:8899/api/v1';
-
-            // 检查网络状态
-            function checkNetwork() {
-                if (plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
-                    mui.toast('当前无网络连接');
-                    return false;
-                }
-                return true;
-            }
-
-            // 显示loading
-            function showLoading() {
-                if (!window._loading) {
-                    $('#busList').html(`
-                        <div class="flex flex-col items-center justify-center p-8">
-                            <div class="loading-spinner mb-4"></div>
-                            <p class="text-gray-500">正在获取最新公交信息...</p>
-                        </div>
-                    `);
-                    window._loading = plus.nativeUI.showWaiting('加载中...');
-                }
-            }
-
-            // 隐藏loading
-            function hideLoading() {
-                if (window._loading) {
-                    window._loading.close();
-                    window._loading = null;
-                }
-            }
-
-            // 获取实时公交数据
-            async function getBusRealTimeInfo(lineCode, retryCount = 3) {
-                if (!checkNetwork()) return null;
-                
-                showLoading();
-                
-                try {
-                    const encodedLineCode = encodeURIComponent(lineCode);
-                    const response = await fetch(`${API_BASE_URL}/bus/realtime/${encodedLineCode}`, {
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        mode: 'cors'
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    hideLoading();
-                    return data.data;
-                    
-                } catch (error) {
-                    console.error('获取公交数据错误:', error);
-                    
-                    if (retryCount > 0) {
-                        hideLoading();
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-                        return getBusRealTimeInfo(lineCode, retryCount - 1);
-                    }
-                    
-                    hideLoading();
-                    mui.toast('获取公交数据失败,请检查网络连接');
-                    
-                    $('#busList').html(`
-                        <div class="text-center p-8">
-                            <div class="text-gray-400 text-5xl mb-4">📡</div>
-                            <p class="text-gray-500 mb-4">网络连接失败</p>
-                            <button class="mui-btn mui-btn-primary" onclick="startRefreshTimer('${lineCode}')">
-                                重试
-                            </button>
-                        </div>
-                    `);
-                    
-                    return null;
-                }
-            }
-
-            // 更新公交信息显示
-            function updateBusInfo(busInfo) {
-                if (!busInfo || !busInfo.busInfo) {
-                    $('#busList').html(`
-                        <div class="text-center p-8">
-                            <div class="text-gray-400 text-5xl mb-4">🚌</div>
-                            <p class="text-gray-500">暂无公交信息</p>
-                        </div>
-                    `);
-                    return;
-                }
-
-                const { lineDetail, busPositions, stops, arrivals } = busInfo.busInfo;
-
-                const processedStops = stops.map(stop => {
-                    const cleanStopName = stop.stopName.replace(/\s*\([^)]*\)\s*/g, '');
-                    const arrival = _.find(arrivals, a => a.sname === cleanStopName);
-                    return {
-                        ...stop,
-                        arrivalInfo: arrival ? {
-                            remaintime: arrival.remaintime,
-                            displayText: arrival.remaintime || '暂无到站信息'
-                        } : {
-                            remaintime: null,
-                            displayText: '暂无到站信息'
-                        }
-                    };
-                });
-
-                const template = _.template(`
-                    <div class="fade-in">
-                        <div class="bus-card p-4">
-                            <div class="flex items-center justify-between mb-3">
-                                <div>
-                                    <h3 class="text-base font-medium text-foreground">
-                                        <%= lineDetail.lineName %>
-                                    </h3>
-                                    <div class="text-sm text-muted-foreground mt-1">
-                                        首班: <%= lineDetail.earlyHour %> | 末班: <%= lineDetail.lastHour %>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-sm text-muted-foreground">
-                                        <%= lineDetail.startStop %> → <%= lineDetail.endStop %>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <% if(busPositions && busPositions.length > 0) { %>
-                            <div class="mt-4 space-y-3">
-                                <% _.forEach(busPositions, function(bus) { %>
-                                    <div class="bus-card p-4">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex items-center space-x-3">
-                                                <div class="text-2xl">🚌</div>
-                                                <div>
-                                                    <div class="font-medium"><%= bus.busNo %></div>
-                                                    <div class="text-sm text-muted-foreground">
-                                                        速度: <%= bus.gpsSpeed %>km/h
-                                                        <% if(bus.arrived === "1") { %>
-                                                            <span class="ml-2 text-emerald-500">●</span>
-                                                        <% } %>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <div class="text-sm text-muted-foreground">
-                                                    车次 #<%= bus.busOrder %>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <% }); %>
-                            </div>
-                        <% } %>
-
-                        <div class="mt-6">
-                            <h4 class="text-sm font-medium text-foreground mb-4">站点信息</h4>
-                            <div class="stops-container">
-                                <% _.forEach(stops, function(stop, index) { %>
-                                    <div class="stop-item">
-                                        <div class="flex-1 flex items-center justify-between">
-                                            <div class="flex items-center space-x-4">
-                                                <div class="flex items-center space-x-3">
-                                                    <span class="stop-number">#<%= stop.stopNo %></span>
-                                                    <span class="text-foreground font-medium"><%= stop.stopName %></span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center space-x-2">
-                                                <% if(stop.arrivalInfo.remaintime) { %>
-                                                    <span class="arrival-time <%= parseInt(stop.arrivalInfo.remaintime) <= 5 ? 'soon' : 'normal' %>">
-                                                        <%= stop.arrivalInfo.displayText %>
-                                                    </span>
-                                                <% } else { %>
-                                                    <span class="text-sm text-muted-foreground"><%= stop.arrivalInfo.displayText %></span>
-                                                <% } %>
-                                            </div>
-                                        </div>
-                                        <% if(stop.crowd && index < stops.length - 1) { %>
-                                            <div class="crowd-indicator crowd-<%= stop.crowd %>"></div>
-                                        <% } %>
-                                    </div>
-                                <% }); %>
-                            </div>
-                        </div>
-
-                        <div class="text-center text-xs text-muted-foreground mt-8 mb-6">
-                            更新时间: <%= new Date().toLocaleTimeString() %>
-                        </div>
-                    </div>
-                `);
-
-                const html = template({
-                    lineDetail,
-                    busPositions,
-                    stops: processedStops
-                });
-
-                $('#busList').html(html);
-            }
-
-            // 定时刷新数据(每60秒)
-            let refreshTimer = null;
-            function startRefreshTimer(lineCode) {
-                if (refreshTimer) {
-                    clearInterval(refreshTimer);
-                }
-
-                getBusRealTimeInfo(lineCode).then(updateBusInfo);
-
-                refreshTimer = setInterval(() => {
-                    getBusRealTimeInfo(lineCode).then(updateBusInfo);
-                }, 60000);
-            }
-
-            // 启动定时刷新(示例使用1路)
-            startRefreshTimer('UFX5uMZ1T+C0GHgerJg2ZYoeE69sRqgDlVFZbIjzUXevYxlSlkvsIPCiUq2Yrdwd800X6gtqX/LOQXP6ebpSHJvoXa6CBBT2PS0ROn+nEpS7xW+o38mTOCy8nXkc4YdxKotzHIWzOiff467p4c/GX/NPLMq6L0Z7zqMTnEqXp4Y=');
+            view.addEventListener("hide", () => {
+                console.log(`页面隐藏: ${view.id}`);
+                // 可以在这里处理页面隐藏后的逻辑
+            });
         });
-    </script>
+    });
+</script>
 </body>
 
 </html>
