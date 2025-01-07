@@ -9,6 +9,8 @@ const dbConfig = {
             w: 1,
             j: true,
         },
+        authSource: "admin",
+        retryWrites: true
     },
     collections: {
         LOGS: process.env.MONGODB_COLLECTION_LOGS || "logs",
